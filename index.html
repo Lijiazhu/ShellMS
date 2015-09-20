@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/github-dark.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/print.css" media="print">
+
+    <title>Shellms by try2codesecure</title>
+  </head>
+
+  <body>
+
+    <header>
+      <div class="container">
+        <h1>Shellms</h1>
+        <h2>ShellMS - ADB Shell SMS APP</h2>
+
+        <section id="downloads">
+          <a href="https://github.com/try2codesecure/ShellMS/zipball/master" class="btn">Download as .zip</a>
+          <a href="https://github.com/try2codesecure/ShellMS/tarball/master" class="btn">Download as .tar.gz</a>
+          <a href="https://github.com/try2codesecure/ShellMS" class="btn btn-github"><span class="icon"></span>View on GitHub</a>
+        </section>
+      </div>
+    </header>
+
+    <div class="container">
+      <section id="main_content">
+        <h1>
+<a id="-shellms-" class="anchor" href="#-shellms-" aria-hidden="true"><span class="octicon octicon-link"></span></a><img src="res/drawable-mdpi/ic_launcher.png" alt="ShellMS Logo" title="ShellMS"> ShellMS </h1>
+
+<p>ShellMS - Android Debug Bridge Shell SMS Application</p>
+
+<p>ShellMS is the simplest and easiest ADB Shell Messaging Application.
+If you don't know what ADB or SDK is you definitely don't need this app.
+For the others it's useful tool to speed up messaging when you're working on your computer.</p>
+
+<p><img src="./stuff/screenshot.png" alt="Screenshot" title="Screenshot"></p>
+
+<p>Download =&gt; APK is availible on F-Droid:</p>
+
+<ul>
+<li><a href="http://f-droid.org/repository/browse/?fdid=com.android.shellms">http://f-droid.org/repository/browse/?fdid=com.android.shellms</a></li>
+</ul>
+
+<p>Usage:</p>
+
+<ul>
+<li>with mobile phone numbers:
+
+<ul>
+<li>adb shell am startservice --user 0 -n com.android.shellms/.sendSMS -e contact +123456789 -e msg "Message"</li>
+</ul>
+</li>
+<li>with display names from phone:
+
+<ul>
+<li>adb shell am startservice --user 0 -n com.android.shellms/.sendSMS -e contact "Contact's DISPLAY NAME" -e msg "MSG"</li>
+</ul>
+</li>
+</ul>
+
+<p>Special features:</p>
+
+<ul>
+<li>Secret SMS (don't store sms in outbox; useful when you send many sms):
+
+<ul>
+<li>append " --esn secret " to the end of the service call above</li>
+</ul>
+</li>
+</ul>
+
+<p>Hints / Notes:</p>
+
+<ul>
+<li>If you're using a new cyanogenmod version =&gt; ! disable Privacy Guard for ShellMS !
+(otherwise the app can't search in your phonebook for the contact-names and can't add sent messages to the outbox)</li>
+<li>When you use the app with names, the programm will only searching if it matches the phone's DisplayName from your contact.
+If the name matches then it searches ONLY for mobile phone numbers. Other numbers will not be processed.</li>
+</ul>
+
+<p>Used permissions:</p>
+
+<ul>
+<li>android.permission.SEND_SMS =&gt; surprisingly to send sms</li>
+<li>android.permission.READ_SMS =&gt; to store in the outbox</li>
+<li>android.permission.WRITE_SMS =&gt; to store in the outbox</li>
+<li>android.permission.READ_CONTACTS =&gt; to get the names from the phone</li>
+</ul>
+
+<p>Templates:</p>
+
+<ul>
+<li>simple shell "<img src="template_sendsms.sh" alt="template_sendsms.sh" title="template_sendsms.sh">"</li>
+<li>for multiple contacts "<img src="template_sendsms_multiple-contacts.sh" alt="template_sendsms_multiple-contacts.sh" title="template_sendsms_multiple-contacts.sh">"</li>
+<li>if you need more scripts =&gt; <a href="https://github.com/fbreitwieser/sendsms-scripts">https://github.com/fbreitwieser/sendsms-scripts</a>
+perl scripts with improved contacts querying and displays recent conversations (GPLv2), thanks to Florian Breitwieser</li>
+</ul>
+
+<p>Changelog:</p>
+
+<p>v1.3 (20150118)</p>
+
+<ul>
+<li>updated target version to 21</li>
+<li>removed deprecated "PhoneNumberUtils.formatNumber" function.</li>
+<li>phone number validation optimized</li>
+</ul>
+
+<p>v1.2 (20131107)</p>
+
+<ul>
+<li>disabled the delivery reports for sent sms - it produces costs for some providers.</li>
+</ul>
+
+<p>v1.1 (20130704)</p>
+
+<ul>
+<li>fixed crash when sending long SMS</li>
+<li>improved shell template</li>
+</ul>
+
+<p>v1.0 (20130425)</p>
+
+<ul>
+<li>first release</li>
+</ul>
+
+<p>License: GPLv3+</p>
+
+<pre><code>ShellMS - Android Debug Bridge Shell SMS Application
+https://github.com/try2codesecure/ShellMS
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.
+</code></pre>
+
+<p>Bug found? PLEASE report it =&gt;</p>
+
+<ul>
+<li><a href="https://github.com/try2codesecure/ShellMS/issues">https://github.com/try2codesecure/ShellMS/issues</a></li>
+</ul>
+
+<p>Debugging:</p>
+
+<ul>
+<li>Debug Mode (hopefully, you'll never need it)
+
+<ul>
+<li>append " --esn debug " to the end of the service call above. Enables more output to logcat</li>
+</ul>
+</li>
+<li>Use logcat to see the service output
+
+<ul>
+<li>adb logcat | grep ShellMS_Service_sendSMS </li>
+<li>adb logcat -d -s -C ShellMS_Service_sendSMS:*</li>
+</ul>
+</li>
+<li>or the main outpput
+
+<ul>
+<li>adb logcat | grep com.android.shellms</li>
+</ul>
+</li>
+</ul>
+
+<p>Roadmap / to do (planned improvements in the future):</p>
+
+<ul>
+<li>improve the sendsms function =&gt; with reply value if it's sent correct (BroadcastReceivers)</li>
+<li>template for windows (power)shell</li>
+<li>password secured service execution =&gt; right now, every user/process on the phone can execute it.</li>
+</ul>
+      </section>
+    </div>
+
+    
+  </body>
+</html>
